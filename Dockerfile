@@ -1,9 +1,12 @@
 # Stage 1: Build the application using Maven
 FROM openjdk:17-jdk-slim AS build
 WORKDIR /app
+
 COPY .mvn/ .mvn/
 COPY mvnw pom.xml ./
 COPY src ./src
+
+RUN chmod +x mvnw
 RUN ./mvnw clean package -DskipTests
 
 # Stage 2: Run the built app
