@@ -27,7 +27,8 @@ RUN ./mvnw dependency:go-offline
 COPY src ./src
 
 # Make wrapper executable and build JAR (skip tests for speed)
-RUN chmod +x mvnw && ./mvnw clean package -DskipTests
+RUN chmod +x mvnw && ./mvnw dependency:go-offline
+
 
 # ------------ Stage 2: Create final image ------------
 FROM openjdk:17-jdk-slim
